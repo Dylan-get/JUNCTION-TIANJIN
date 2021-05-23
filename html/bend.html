@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Grade</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+<script language="JavaScript">
+    $(document).ready(function() {
+        var title = {
+            text: '三类学生成绩平均水平'
+        };
+        var subtitle = {
+            text: '注：通过分析实际情形合理构造出的数据'
+        };
+        var xAxis = {
+            categories: ["语文", "数学", "英语", "物理", "化学", "生物", "政治", "历史", "地理", "体育", "音乐",
+                "信息"]
+        };
+        var yAxis = {
+            title: {
+                text: 'Grade (分数)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        };
+
+        var legend = {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        };
+
+        var series =  [
+            {
+                name: '优等生',
+                data: [89.27006935, 91.17972476, 88.73671744, 89.01697239, 88.73907597, 86.89532415,
+                    88.67753149, 89.33260691, 89.76529234, 80.72224773, 89.76022371, 88.68483892]
+            },
+            {
+                name: '优等生总体预测评估值',
+                data: [86.027664, 86.027664, 86.027664, 86.027664, 86.027664, 86.027664,
+                    86.027664, 86.027664, 86.027664, 86.027664, 86.027664, 86.027664]
+            },
+            {
+                name: '中等生',
+                data: [79.18351526, 79.18157969, 73.85086874, 70.06241487, 74.3859698,  79.24725144,
+                    74.66780642, 79.80779132, 79.7264084,  84.46836764, 84.79467381, 84.7330773]
+
+            },
+            {
+                name: '中等生总体预测评估值',
+                data: [82.071884, 82.071884, 82.071884, 82.071884, 82.071884, 82.071884,
+                    82.071884, 82.071884, 82.071884, 82.071884, 82.071884, 82.071884, ]
+            },
+            {
+                name: '劣等生',
+                data: [64.02387513, 64.81127576, 70.71275252, 59.9693309,  69.6603594,  69.43732539,
+                    59.13682307, 69.34598173, 69.47028085, 84.57702555, 83.74228572, 73.14413377]
+            },
+            {
+                name: '劣等生总体预测评估值',
+                data: [69.650871, 69.650871, 69.650871, 69.650871, 69.650871, 69.650871,
+                    69.650871, 69.650871, 69.650871, 69.650871, 69.650871, 69.650871, ]
+            }
+        ];
+
+        var json = {};
+
+        json.title = title;
+        json.subtitle = subtitle;
+        json.xAxis = xAxis;
+        json.yAxis = yAxis;
+        json.legend = legend;
+        json.series = series;
+
+        $('#container').highcharts(json);
+    });
+</script>
+</body>
+</html>

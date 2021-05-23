@@ -1,0 +1,142 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Suggestion</title>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+<div id="container" style="width: 700px; height: 400px; margin: 0 auto"></div>
+<script language="JavaScript">
+  var categories = new Array();
+  for (var i = 0; i < 40;i ++){
+    categories[i] = i;
+  }
+  $(document).ready(function() {
+    var chart = {
+      zoomType: 'xy'
+    };
+    var subtitle = {
+      text: '注：若相邻任务出现下降，则给出任务增加建议；' +
+              '若相邻任务出现上升，则给出任务减少建议'
+    };
+    var title = {
+      text: '同一学生不同任务段任务量分析与合理建议'
+    };
+    var xAxis = {
+      crosshair: true
+    };
+    var yAxis= [{ // 第一条Y轴
+      labels: {
+        format: '{value}',
+        style: {
+          color: Highcharts.getOptions().colors[2]
+        }
+      },
+      title: {
+        text: '当前语文学科任务建议增长（减少）百分比',
+        style: {
+          color: Highcharts.getOptions().colors[2]
+        }
+      },
+      opposite: true
+    }, { // 第二条Y轴
+      title: {
+        text: '任务量',
+        style: {
+          color: Highcharts.getOptions().colors[0]
+        }
+      },
+      labels: {
+        format: '{value}',
+        style: {
+          color: Highcharts.getOptions().colors[0]
+        }
+      }
+    }, { // 第三条Y轴
+      gridLineWidth: 0,
+      title: {
+        text: '当前总任务建议增加（减少）百分比',
+        style: {
+          color: Highcharts.getOptions().colors[1]
+        }
+      },
+      labels: {
+        format: '{value}',
+        style: {
+          color: Highcharts.getOptions().colors[1]
+        }
+      },
+      opposite:true
+    }];
+    var tooltip = {
+      shared: true
+    };
+    var legend = {
+      layout: 'vertical',
+      align: 'center',
+      x: 120,
+      verticalAlign: 'top',
+      y: 65,
+      floating: true,
+      itemStyle:{
+        fontSize:'9px'
+      },
+      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    };
+    var series= [{
+      name: '任务量',
+      type: 'column',
+      yAxis: 1,
+      data: [3.23107386, 2.46779602, 2.69030654, 2.47824999, 2.16993861,
+        2.6606471 , 2.61561799, 1.61129363, 1.53851372, 2.41685579,
+        3.6474748 , 2.42193919, 2.31422164, 2.07641313, 2.51913647,
+        2.12061026, 2.98718444, 2.1094418 , 2.46925947, 2.13053823,
+        1.40689421, 3.0438537 , 3.57085751, 3.33878746, 3.49891314,
+        2.48563236, 2.79715274, 2.00353276, 3.10199871, 2.14015444,
+        1.27364667, 1.99554729, 2.35351806, 2.44027573, 2.85483392,
+        3.02385087, 1.94547896, 2.68476117, 2.35940069, 3.00439695],
+    },{
+      name: '当前总任务建议增加（减少）百分比',
+      type: 'spline',
+      yAxis: 2,
+      data: [11.811519508591763, 4.508284159521072, 3.941122480938867, 6.220344554223169, 11.306967063709548,
+        0.8462060139356282, 19.198605466221924, 2.258431161720703, 28.545149118796417, 25.45909074942863,
+        16.799781781990347, 2.2237871222416508, 5.137980579587077, 10.66077220415663, 7.909976633017169,
+        20.432188832075894, 14.69180535153521, 8.528741437120285, 6.85876157742642, 16.982657450135648,
+        58.17635312976987, 8.656851789730277, 3.249500212260513, 2.397961446617495, 14.479936142786883,
+        6.266421161878049, 14.186211048068165, 27.41322650026481, 15.503621309876019, 20.244047631955734,
+        28.339908929740307, 8.969237979214725, 1.8431485754106016, 8.494085035759747, 2.960188857311332,
+        17.831102785858622, 19.00000549156868, 6.0593934072377245, 13.668645989279002, 0],
+      marker: {
+        enabled: false
+      },
+      dashStyle: 'shortdot',
+    },{
+      name: '当前语文学科任务建议增长（减少）百分比',
+      type: 'spline',
+      data: [2.3623039017183527, 0.9016568319042143, 0.7882244961877735, 1.2440689108446337, 2.2613934127419095,
+             0.16924120278712565, 3.8397210932443846, 0.45168623234414057, 5.709029823759283, 5.091818149885726,
+             3.3599563563980697, 0.44475742444833016, 1.0275961159174154, 2.132154440831326, 1.581995326603434,
+             4.0864377664151785, 2.9383610703070424, 1.705748287424057, 1.371752315485284, 3.3965314900271295,
+             11.635270625953973, 1.7313703579460553, 0.6499000424521025, 0.479592289323499, 2.8959872285573764,
+             1.25328423237561, 2.837242209613633, 5.482645300052962, 3.100724261975204, 4.048809526391147,
+             5.6679817859480615, 1.793847595842945, 0.36862971508212034, 1.6988170071519493, 0.5920377714622664,
+             3.5662205571717243, 3.8000010983137362, 1.2118786814475448, 2.7337291978558005, 0],
+    }
+    ];
+
+    var json = {};
+    json.chart = chart;
+    json.title = title;
+    json.subtitle = subtitle;
+    json.xAxis = xAxis;
+    json.yAxis = yAxis;
+    json.tooltip = tooltip;
+    json.legend = legend;
+    json.series = series;
+    $('#container').highcharts(json);
+  });
+</script>
+</body>
+</html>
